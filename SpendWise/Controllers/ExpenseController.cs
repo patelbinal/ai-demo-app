@@ -26,27 +26,26 @@ public class ExpenseController : ControllerBase
         {
             query = query.Where(e => e.Description.Contains(searchTerm));
         }
-
+        
         if (categoryId.HasValue)
         {
             query = query.Where(e => e.CategoryId == categoryId);
         }
-
+        
         if (startDate.HasValue)
         {
             query = query.Where(e => e.Date >= startDate);
         }
-
+        
         if (endDate.HasValue)
         {
             query = query.Where(e => e.Date <= endDate);
         }
-
-        var expenses = await query.Include(e => e.Category)
-                                   .Where(e => e.UserId == User.Identity.Name) // Only get current user's expenses
+        
+        var expenses = await query.Include(e => e.Category) // Only get current user's expenses
                                    .ToListAsync();
 
-        return Ok(expenses);
+        return Ok(query);
     }
 
     // POST: api/Expense

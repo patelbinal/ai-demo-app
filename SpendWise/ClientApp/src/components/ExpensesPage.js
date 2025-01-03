@@ -15,7 +15,6 @@ const ExpensesPage = () => {
         axiosInstance.get('https://localhost:7041/api/Expense', {
             params: {
                 searchTerm,
-                categoryId: category,
                 startDate,
                 endDate
             }
@@ -52,7 +51,7 @@ const ExpensesPage = () => {
                         >
                             <option value="">Select Category</option>
                             {categories.map(cat => (
-                                <option key={cat.ID} value={cat.ID}>{cat.Name}</option>
+                                <option key={cat.ID} value={cat.ID}>{cat.code}</option>
                             ))}
                         </Form.Control>
                     </Col>
@@ -84,13 +83,13 @@ const ExpensesPage = () => {
                 </thead>
                 <tbody>
                 {expenses.map(exp => (
-                    <tr key={exp.ID}>
-                        <td>{exp.Description}</td>
-                        <td>{exp.Amount}</td>
-                        <td>{exp.Category.Name}</td>
+                    <tr key={exp.id}>
+                        <td>{exp.description}</td>
+                        <td>{exp.amount}</td>
+                        <td>{exp.category.description}</td>
                         <td>{new Date(exp.Date).toLocaleDateString()}</td>
                         <td>
-                            <Button variant="danger" onClick={() => deleteExpense(exp.ID)}>Delete</Button>
+                            <Button variant="danger" onClick={() => deleteExpense(exp.id)}>Delete</Button>
                         </td>
                     </tr>
                 ))}
