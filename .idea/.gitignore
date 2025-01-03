@@ -1,13 +1,105 @@
-﻿# Default ignored files
-/shelf/
-/workspace.xml
-# Rider ignored files
-/projectSettingsUpdater.xml
-/.idea.ai-demo-app.iml
-/contentModel.xml
-/modules.xml
-# Editor-based HTTP Client requests
-/httpRequests/
-# Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
+﻿# Ignore build and publish output
+bin/
+obj/
+out/
+publish/
+
+# Ignore dependency directories
+node_modules/
+packages/
+
+# Ignore local environment files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.swp
+.vscode/
+.idea/
+.vs/
+.env
+.env.local
+.env.*.local
+
+# Ignore logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+*.stackdump
+desktop.ini
+$RECYCLE.BIN/
+*.TMP
+
+# Ignore React build files
+build/
+dist/
+
+# Ignore coverage reports
+coverage/
+
+# Ignore generated files by NPM/Yarn/PNPM
+*.cache/
+.pnpm-debug.log
+.yarn-integrity
+.yarn-cache/
+.yarn/
+
+# Ignore global configuration files
+*.local.settings.json
+*.local.json
+
+# Ignore lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Ignore Rider and JetBrains files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore EF Core migrations folder if you want to avoid version control
+Migrations/
+
+# Ignore debug/release directories
+debug/
+release/
+
+# Ignore personal developer settings
+*.settings.json
+
+# Ignore unnecessary test artifacts
+TestResults/
+
+# Ignore Windows-specific files
+*.bak
+*.obj
+
+# Ignore temporary data from Visual Studio
+_ReSharper.Caches/
+
+# Ignore logs, deploy keys, and sensitive data
+*.log
+*.key
+
+# Ignore lint caches
+eslintcache/
+.prettierignore.cache/
+
+# Ignore Azure function and related files
+.local.settings.json
+
+# Ignore NPM or Yarn lock file (optional, uncomment if not used)
+# yarn.lock
+# package-lock.json
