@@ -50,10 +50,20 @@ public class ExpenseController : ControllerBase
 
     // POST: api/Expense
     [HttpPost]
-    public async Task<IActionResult> CreateExpense([FromBody] Expense expense)
+    public async Task<IActionResult> CreateExpense([FromBody] ExpenseLite expenseLite)
     {
         if (ModelState.IsValid)
         {
+            var expense = new Expense
+            {
+                Amount = expenseLite.Amount,
+                Description = expenseLite.Description,
+                Date = DateTime.Now,
+                CategoryId = expenseLite.CategoryId,
+                CreatedAt = DateTime.Now,
+                ModifiedAt = DateTime.Now
+            };
+
             expense.UserId = User.Identity.Name; // Set the current user's ID
             _context.Expenses.Add(expense);
             await _context.SaveChangesAsync();
