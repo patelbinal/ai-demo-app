@@ -11,7 +11,7 @@ const CategoriesPage = () => {
     }, []);
 
     const addCategory = () => {
-        axiosInstance.post('https://localhost:7041/api/Category', { Name: categoryName }).then(response => {
+        axiosInstance.post('https://localhost:7041/api/Category', { Code: categoryName, Description: categoryName }).then(response => {
             setCategories([...categories, response.data]);
             setCategoryName("");
         });
@@ -20,6 +20,8 @@ const CategoriesPage = () => {
     const deleteCategory = (id) => {
         axiosInstance.delete(`https://localhost:7041/api/Category/${id}`).then(() => {
             setCategories(categories.filter(cat => cat.ID !== id));
+            setTimeout(() => window.location.reload(), 200);
+            
         });
     };
 
@@ -44,10 +46,13 @@ const CategoriesPage = () => {
                 </thead>
                 <tbody>
                 {categories.map(cat => (
-                    <tr key={cat.ID}>
-                        <td>{cat.Name}</td>
+                    <tr key={cat.id}>
+                        <td>{cat.description}</td>
                         <td>
-                            <Button variant="danger" onClick={() => deleteCategory(cat.ID)}>Delete</Button>
+                            <Button variant="danger" onClick={() => {
+                                deleteCategory(cat.id);
+                            }
+                            }>Delete</Button>
                         </td>
                     </tr>
                 ))}

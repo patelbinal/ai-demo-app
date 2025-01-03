@@ -1,9 +1,12 @@
-﻿import React from "react";
+﻿import React, { useContext } from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../AuthContext";
 import './NavBar.css';
 
 const NavBar = () => {
+    const { user, logout } = useContext(AuthContext);
+
     return (
         <Navbar bg="dark" variant="dark" expand="lg" className="navbar shadow-lg">
             <Container>
@@ -28,12 +31,15 @@ const NavBar = () => {
                         <Nav.Link as={NavLink} to="/admin" className="nav-link px-3" activeClassName="active">
                             Admin
                         </Nav.Link>
-                        <Nav.Link as={NavLink} to="/login" className="nav-link px-3" activeClassName="active">
-                            Login
-                        </Nav.Link>
-                        <Button variant="outline-warning" size="sm" className="logout-btn ms-3">
-                            Logout
-                        </Button>
+                        {!user ? (
+                            <Nav.Link as={NavLink} to="/login" className="nav-link px-3" activeClassName="active">
+                                Login
+                            </Nav.Link>
+                        ) : (
+                            <Button variant="outline-warning" size="sm" className="logout-btn ms-3" onClick={logout}>
+                                Logout
+                            </Button>
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
