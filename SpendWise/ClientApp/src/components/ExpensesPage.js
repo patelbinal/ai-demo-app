@@ -46,7 +46,7 @@ const ExpensesPage = () => {
                             value={categoryId}
                             onChange={(e) => setCategoryId(e.target.value)}
                         >
-                            <option value="">Select Category</option>
+                            <option value="">All Category</option>
                             {categories.map(cat => (
                                 <option key={cat.ID} value={cat.id}>{cat.description}</option>
                             ))}
