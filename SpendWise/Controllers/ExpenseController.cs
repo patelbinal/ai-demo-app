@@ -18,7 +18,7 @@ public class ExpenseController : ControllerBase
 
     // GET: api/Expense
     [HttpGet]
-    public async Task<IActionResult> GetExpenses([FromQuery] string searchTerm, [FromQuery] int? categoryId, [FromQuery] DateTime? startDate, [FromQuery] DateTime? endDate)
+    public async Task<IActionResult> GetExpenses([FromQuery] string? searchTerm, [FromQuery] int? categoryId, [FromQuery] DateTime? startDate, [FromQuery] DateTime? endDate)
     {
         var query = _context.Expenses.AsQueryable();
 
