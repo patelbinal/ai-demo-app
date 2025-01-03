@@ -54,7 +54,8 @@ public class CategoryController : ControllerBase
             return NotFound();
         }
 
-        existingCategory.Name = category.Name;
+        existingCategory.Code = category.Code;
+        existingCategory.Description = category.Description;
 
         await _context.SaveChangesAsync();
 
