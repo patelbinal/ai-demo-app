@@ -12,7 +12,7 @@ const ExpensesPage = () => {
 
     useEffect(() => {
         // Fetch expenses
-        axios.get('/api/Expense', {
+        axiosInstance.get('/api/Expense', {
             params: {
                 searchTerm,
                 categoryId: category,
@@ -22,11 +22,11 @@ const ExpensesPage = () => {
         }).then(response => setExpenses(response.data));
 
         // Fetch categories for the filter dropdown
-        axios.get('/api/Category').then(response => setCategories(response.data));
+        axiosInstance.get('/api/Category').then(response => setCategories(response.data));
     }, [searchTerm, category, startDate, endDate]);
 
     const deleteExpense = (id) => {
-        axios.delete(`/api/Expense/${id}`).then(() => {
+        axiosInstance.delete(`/api/Expense/${id}`).then(() => {
             setExpenses(expenses.filter(exp => exp.ID !== id));
         });
     };

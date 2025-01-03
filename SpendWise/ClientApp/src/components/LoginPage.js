@@ -12,7 +12,7 @@ const LoginPage = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         axios
-            .post('/api/Auth/login', { email, password }, { withCredentials: true })
+            .post('https://localhost:7041/api/Auth/login', { email, password }, { withCredentials: true })
             .then(() => {
                 navigate('/expenses'); // Redirect to expenses page on successful login
             })
