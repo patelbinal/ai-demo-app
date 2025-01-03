@@ -13,7 +13,7 @@ const AddExpensePage = () => {
     const handleAddExpense = (e) => {
         e.preventDefault();
         axios
-            .post('https://localhost:7041/api/Expenses', { description, amount, category }, { withCredentials: true })
+            .post('https://localhost:7041/api/Expense', { description, amount, category }, { withCredentials: true })
             .then(() => {
                 navigate('/expenses'); // Redirect to expenses page on successful addition
             })
