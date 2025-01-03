@@ -12,19 +12,6 @@ body {
     line-height: 1.6;
 }
 
-/* Navbar */
-.navbar {
-    background-color: #007bff !important;
-}
-
-.navbar a {
-    color: white !important;
-    font-weight: bold;
-}
-
-.navbar a:hover {
-    color: #d1ecf1 !important;
-}
 
 /* Container */
 .container {
