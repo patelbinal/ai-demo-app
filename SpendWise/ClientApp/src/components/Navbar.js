@@ -19,6 +19,9 @@ const NavBar = () => {
                         <Nav.Link as={NavLink} to="/expenses" className="nav-link px-3" activeClassName="active">
                             Expenses
                         </Nav.Link>
+                        <Nav.Link as={NavLink} to="/add-expense" className="nav-link px-3" activeClassName="active">
+                            Add Expense
+                        </Nav.Link>
                         <Nav.Link as={NavLink} to="/categories" className="nav-link px-3" activeClassName="active">
                             Categories
                         </Nav.Link>

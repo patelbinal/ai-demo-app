@@ -6,6 +6,7 @@ import CategoriesPage from './components/CategoriesPage';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import PrivateRoute from './components/PrivateRoute';
+import AddExpensePage from './components/AddExpensePage';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/categories" element={<CategoriesPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/add-expense" element={<AddExpensePage />} />
                     <Route path="/" exact element={<LoginPage />} />
                 </Routes>
             </div>
