@@ -5,9 +5,7 @@ import axiosInstance from '../axiosInstance';
 const ExpensesPage = () => {
     const [expenses, setExpenses] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [category, setCategory] = useState("");
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
+    const [categoryId, setCategoryId] = useState("");
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
@@ -15,18 +13,17 @@ const ExpensesPage = () => {
         axiosInstance.get('https://localhost:7041/api/Expense', {
             params: {
                 searchTerm,
-                startDate,
-                endDate
+                categoryId
             }
         }).then(response => setExpenses(response.data));
 
         // Fetch categories for the filter dropdown
         axiosInstance.get('https://localhost:7041/api/Category').then(response => setCategories(response.data));
-    }, [searchTerm, category, startDate, endDate]);
+    }, [searchTerm, categoryId]);
 
     const deleteExpense = (id) => {
         axiosInstance.delete(`https://localhost:7041/api/Expense/${id}`).then(() => {
-            setExpenses(expenses.filter(exp => exp.ID !== id));
+            window.location.reload(); // Refresh the page after deleting the expense
         });
     };
 
@@ -35,7 +32,7 @@ const ExpensesPage = () => {
             <h3>Expenses</h3>
             <Form>
                 <Row>
-                    <Col md={4}>
+                    <Col md={6}>
                         <Form.Control
                             type="text"
                             placeholder="Search by description"
@@ -43,31 +40,17 @@ const ExpensesPage = () => {
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </Col>
-                    <Col md={3}>
+                    <Col md={6}>
                         <Form.Control
                             as="select"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
+                            value={categoryId}
+                            onChange={(e) => setCategoryId(e.target.value)}
                         >
                             <option value="">Select Category</option>
                             {categories.map(cat => (
                                 <option key={cat.ID} value={cat.ID}>{cat.code}</option>
                             ))}
                         </Form.Control>
-                    </Col>
-                    <Col md={2}>
-                        <Form.Control
-                            type="date"
-                            value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
-                        />
-                    </Col>
-                    <Col md={2}>
-                        <Form.Control
-                            type="date"
-                            value={endDate}
-                            onChange={(e) => setEndDate(e.target.value)}
-                        />
                     </Col>
                 </Row>
             </Form>
@@ -77,7 +60,6 @@ const ExpensesPage = () => {
                     <th>Description</th>
                     <th>Amount</th>
                     <th>Category</th>
-                    <th>Date</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -87,7 +69,6 @@ const ExpensesPage = () => {
                         <td>{exp.description}</td>
                         <td>{exp.amount}</td>
                         <td>{exp.category.description}</td>
-                        <td>{new Date(exp.Date).toLocaleDateString()}</td>
                         <td>
                             <Button variant="danger" onClick={() => deleteExpense(exp.id)}>Delete</Button>
                         </td>
