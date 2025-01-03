@@ -21,6 +21,10 @@ const LoginPage = () => {
             });
     };
 
+    const handleRegister = () => {
+        navigate('/register'); // Redirect to register page
+    };
+
     return (
         <div className="login-page">
             <h3>Login</h3>
@@ -46,6 +50,9 @@ const LoginPage = () => {
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Login
+                </Button>
+                <Button variant="link" onClick={handleRegister}>
+                    Register
                 </Button>
             </Form>
         </div>
