@@ -7,18 +7,18 @@ const CategoriesPage = () => {
     const [categoryName, setCategoryName] = useState("");
 
     useEffect(() => {
-        axios.get('/api/Category').then(response => setCategories(response.data));
+        axiosInstance.get('https://localhost:7041/api/Category').then(response => setCategories(response.data));
     }, []);
 
     const addCategory = () => {
-        axios.post('/api/Category', { Name: categoryName }).then(response => {
+        axiosInstance.post('https://localhost:7041/api/Category', { Name: categoryName }).then(response => {
             setCategories([...categories, response.data]);
             setCategoryName("");
         });
     };
 
     const deleteCategory = (id) => {
-        axios.delete(`/api/Category/${id}`).then(() => {
+        axiosInstance.delete(`https://localhost:7041/api/Category/${id}`).then(() => {
             setCategories(categories.filter(cat => cat.ID !== id));
         });
     };

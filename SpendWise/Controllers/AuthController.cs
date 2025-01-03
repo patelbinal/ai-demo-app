@@ -8,7 +8,6 @@ using SpendWise.Models;
 
 [Route("api/[controller]")]
 [ApiController]
-[EnableCors("AllowSpecificOrigin")]
 public class AuthController : ControllerBase
 {
     private readonly UserManager<User> _userManager;
