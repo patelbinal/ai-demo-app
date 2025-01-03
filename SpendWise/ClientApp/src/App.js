@@ -1,22 +1,27 @@
-import React, { Component } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import AppRoutes from './AppRoutes';
-import { Layout } from './components/Layout';
-import './custom.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import ExpensesPage from './components/ExpensesPage';
+import CategoriesPage from './components/CategoriesPage';
+import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage';
+import PrivateRoute from './components/PrivateRoute';
 
-export default class App extends Component {
-  static displayName = App.name;
-
-  render() {
+function App() {
     return (
-      <Layout>
-        <Routes>
-          {AppRoutes.map((route, index) => {
-            const { element, ...rest } = route;
-            return <Route key={index} {...rest} element={element} />;
-          })}
-        </Routes>
-      </Layout>
+        <Router>
+            <Navbar />
+            <div className="container mt-4">
+                <Routes>
+                    <Route path="/expenses" element={<PrivateRoute component={ExpensesPage} />} />
+                    <Route path="/categories" element={<PrivateRoute component={CategoriesPage} />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/" exact element={<LoginPage />} />
+                </Routes>
+            </div>
+        </Router>
     );
-  }
 }
+
+export default App;
