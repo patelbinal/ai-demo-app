@@ -13,8 +13,8 @@ function App() {
             <Navbar />
             <div className="container mt-4">
                 <Routes>
-                    <Route path="/expenses" element={<PrivateRoute component={ExpensesPage} />} />
-                    <Route path="/categories" element={<PrivateRoute component={CategoriesPage} />} />
+                    <Route path="/expenses" element={<ExpensesPage />}/>
+                    <Route path="/categories" element={<CategoriesPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/" exact element={<LoginPage />} />

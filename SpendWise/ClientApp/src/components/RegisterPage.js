@@ -16,7 +16,6 @@ const RegisterPage = () => {
         axios
             .post('https://localhost:7041/api/Auth/register',
                 { name, email, password },
-                { headers: { 'Content-Type': 'application/json' } }
             )
             .then(() => {
                 setSuccess('Registration successful! You can now login.');
