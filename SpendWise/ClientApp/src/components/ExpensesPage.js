@@ -48,7 +48,7 @@ const ExpensesPage = () => {
                         >
                             <option value="">Select Category</option>
                             {categories.map(cat => (
-                                <option key={cat.ID} value={cat.ID}>{cat.code}</option>
+                                <option key={cat.ID} value={cat.id}>{cat.description}</option>
                             ))}
                         </Form.Control>
                     </Col>
