@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import axios from '../axiosInstance';
 import { useNavigate } from 'react-router-dom';
 
 const AddExpensePage = () => {
     const [description, setDescription] = useState('');
-    const [amount, setAmount] = useState('');
-    const [category, setCategory] = useState('');
+    const [Amount, setAmount] = useState('');
+    const [categoryId, setCategoryId] = useState('');
+    const [categories, setCategories] = useState([]);
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Fetch categories from the API
+        axios.get('https://localhost:7041/api/Category', { withCredentials: true })
+            .then(response => {
+                setCategories(response.data);
+            })
+            .catch(err => {
+                setError('Failed to fetch categories');
+            });
+    }, []);
 
     const handleAddExpense = (e) => {
         e.preventDefault();
         axios
-            .post('https://localhost:7041/api/Expense', { description, amount, category }, { withCredentials: true })
+            .post('https://localhost:7041/api/Expense', { Amount: Amount, Description : description, CategoryId: categoryId }, { withCredentials: true })
             .then(() => {
                 navigate('/expenses'); // Redirect to expenses page on successful addition
             })
@@ -41,18 +53,24 @@ const AddExpensePage = () => {
                     <Form.Control
                         type="number"
                         placeholder="Enter amount"
-                        value={amount}
+                        value={Amount}
                         onChange={(e) => setAmount(e.target.value)}
                     />
                 </Form.Group>
                 <Form.Group controlId="formCategory">
                     <Form.Label>Category</Form.Label>
                     <Form.Control
-                        type="text"
-                        placeholder="Enter category"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                    />
+                        as="select"
+                        value={categoryId}
+                        onChange={(e) => setCategoryId(e.target.value)}
+                    >
+                        <option value="">Select a category</option>
+                        {categories.map(category => (
+                            <option key={category.id} value={category.id}>
+                                {category.description}
+                            </option>
+                        ))}
+                    </Form.Control>
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Add Expense
