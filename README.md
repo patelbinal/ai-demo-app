@@ -78,6 +78,7 @@ This is a web application for managing expenses. It allows users to view, search
 - View a list of expenses.
 - Search expenses by description.
 - Delete an expense.
+- Add an expense
 
 ## License
 
