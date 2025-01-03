@@ -49,11 +49,13 @@ This is a web application for managing expenses. It allows users to view, search
 
 1. Start the backend server:
     ```sh
+    cd SpendWise
     dotnet run
     ```
 
 2. Start the frontend development server:
     ```sh
+    cd SpendWise
     cd ClientApp
     npm start
     ```
